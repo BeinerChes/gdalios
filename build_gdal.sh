@@ -12,9 +12,13 @@ cd $SRC
 #if [  $GDAL_VERSION = 3.5.1 ]
 #then
 #echo Downloading cmake patch
-#curl -L "https://raw.githubusercontent.com/BeinerChes/gdaliospatch/main/PATCH_configure.cmake" -o $SRC/PATCH_configure.cmake
+#curl -L "https://raw.githubusercontent.com/BeinerChes/gdalios/main/PATCH_3.5.1_configure.cmake" -o $SRC/PATCH_configure.cmake
 #patch gdal-$GDAL_VERSION/cmake/helpers/configure.cmake $SRC/PATCH_configure.cmake
 #fi
+
+echo Downloading cmake patch for tests
+curl -L "https://raw.githubusercontent.com/BeinerChes/gdalios/main/PATCH_CMakeLists.txt" -o $SRC/PATCH_CMakeLists.txt
+patch gdal-$GDAL_VERSION/CMakeLists.txt $SRC/PATCH_CMakeLists.txt
 
 #if [  $GDAL_VERSION = 3.5.1 ]
 #then
