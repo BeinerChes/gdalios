@@ -1,0 +1,10 @@
+--- orig/CMakeLists.txt   2022-09-01 14:40:38.000000000 -0700
++++ patched/CMakeLists.txt    2022-09-01 14:41:09.000000000 -0700
+@@ -226,6 +226,6 @@
+ add_subdirectory(fuzzers)
+ if (BUILD_TESTING)
+   # Google OSS-Fuzz tests
+-  add_subdirectory(fuzzers/tests)
++  # add_subdirectory(fuzzers/tests)
+ endif ()
+ # vim: ts=4 sw=4 sts=4 et

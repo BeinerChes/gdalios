@@ -2,22 +2,35 @@
 echo Build Gdal 
 cd $SRC
 
-if [ ! -e gdal-$PROJ_VERSION ]
-then
-echo Downloading gdal
-curl -L -O "https://github.com/OSGeo/gdal/releases/download/v$GDAL_VERSION/gdal-$GDAL_VERSION.tar.gz"
-tar -xzf gdal-$GDAL_VERSION.tar.gz
-fi
+#if [ ! -e gdal-$PROJ_VERSION ]
+#then
+#echo Downloading gdal
+#curl -L -O "https://github.com/OSGeo/gdal/releases/download/v$GDAL_VERSION/gdal-$GDAL_VERSION.tar.gz"
+#tar -xzf gdal-$GDAL_VERSION.tar.gz
+#fi
 
-if [  $GDAL_VERSION = 3.5.1 ]
-then
-echo Downloading cmake patch
-curl -L "https://raw.githubusercontent.com/BeinerChes/gdaliospatch/main/PATCH_configure.cmake" -o $SRC/PATCH_configure.cmake
-patch gdal-$GDAL_VERSION/cmake/helpers/configure.cmake $SRC/PATCH_configure.cmake
-fi
+#if [  $GDAL_VERSION = 3.5.1 ]
+#then
+#echo Downloading cmake patch
+#curl -L "https://raw.githubusercontent.com/BeinerChes/gdaliospatch/main/PATCH_configure.cmake" -o $SRC/PATCH_configure.cmake
+#patch gdal-$GDAL_VERSION/cmake/helpers/configure.cmake $SRC/PATCH_configure.cmake
+#fi
+
+#if [  $GDAL_VERSION = 3.5.1 ]
+#then
+#echo Downloading cmake patch
+#curl -L "https://raw.githubusercontent.com/BeinerChes/gdaliospatch/main/PATCH_configure.cmake" -o $SRC/PATCH_configure.cmake
+#patch gdal-$GDAL_VERSION/cmake/helpers/configure.cmake $SRC/PATCH_configure.cmake
+#fi
 
 cd gdal-$GDAL_VERSION
-rm -r build_$OS; mkdir build_$OS; cd build_$OS
+#rm -r build_$OS;
+if [  ! -e build_$OS ]
+then
+mkdir build_$OS; 
+fi
+
+cd build_$OS
 
 cmake -DCMAKE_TOOLCHAIN_FILE=$CMTOOLCHAIN \
     -DPLATFORM=$OS \
@@ -31,9 +44,9 @@ cmake -DCMAKE_TOOLCHAIN_FILE=$CMTOOLCHAIN \
     -DSQLITE3_LIBRARY=$PREFIX/lib/libsqlite3.a \
     -DIconv_INCLUDE_DIR=$SDKPATH/usr \
     -DIconv_LIBRARY=$SDKPATH/usr/lib/libiconv.tbd \
-    -DGEOS_INCLUDE_DIR=$PREFIX/include \
-    -DGEOS_LIBRARY=$PREFIX/lib \
     -DGDAL_USE_GEOS=ON \
+    -BUILD_TESTING=OFF \
+    -DBUILD_TESTING=OFF \
     -DCMAKE_BUILD_TYPE=Release \
     ..
 cmake --build .
