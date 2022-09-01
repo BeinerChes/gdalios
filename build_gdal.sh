@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
-
-echo Build Proj 
+echo Build Gdal 
 cd $SRC
 
 if [ ! -e gdal-$PROJ_VERSION ]
@@ -23,12 +22,19 @@ rm -r build_$OS; mkdir build_$OS; cd build_$OS
 cmake -DCMAKE_TOOLCHAIN_FILE=$CMTOOLCHAIN \
     -DPLATFORM=$OS \
     -DENABLE_BITCODE=OFF \
-    -DBUILD_SHARED_LIBS=OFF \
     -DCMAKE_INSTALL_PREFIX=$PREFIX \
-    -DENABLE_TIFF=OFF -DENABLE_CURL=OFF \
-    -DBUILD_PROJSYNC=OFF \
+    -DBUILD_SHARED_LIBS=OFF \
+    -DBUILD_APPS=OFF \
+    -DBUILD_PYTHON_BINDINGS=OFF \
+    -DPROJ_ROOT=$PREFIX \
     -DSQLITE3_INCLUDE_DIR=$PREFIX/include \
     -DSQLITE3_LIBRARY=$PREFIX/lib/libsqlite3.a \
+    -DIconv_INCLUDE_DIR=$SDKPATH/usr \
+    -DIconv_LIBRARY=$SDKPATH/usr/lib/libiconv.tbd \
+    -DGEOS_INCLUDE_DIR=$PREFIX/include \
+    -DGEOS_LIBRARY=$PREFIX/lib \
+    -DGDAL_USE_GEOS=ON \
+    -DCMAKE_BUILD_TYPE=Release \
     ..
 cmake --build .
 cmake --build . --target install

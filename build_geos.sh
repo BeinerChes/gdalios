@@ -1,16 +1,16 @@
 #!/usr/bin/env bash
 
-echo Build Proj 
+echo Build geos 
 cd $SRC
 
 if [ ! -e proj-$PROJ_VERSION ]
 then
-echo Downloading proj
-curl -L -O "https://download.osgeo.org/proj/proj-$PROJ_VERSION.tar.gz"
-tar -xzf proj-$PROJ_VERSION.tar.gz
+echo Downloading geos
+curl -L -O "https://github.com/libgeos/geos/releases/download/$GEOS_VERSION/geos-$GEOS_VERSION.tar.bz2"
+tar -xzf geos-$GEOS_VERSION.tar.bz2
 fi
 
-cd proj-$PROJ_VERSION
+cd geos-$GEOS_VERSION
 rm -r build_$OS; mkdir build_$OS; cd build_$OS
 
 cmake -DCMAKE_TOOLCHAIN_FILE=$CMTOOLCHAIN \
@@ -18,10 +18,7 @@ cmake -DCMAKE_TOOLCHAIN_FILE=$CMTOOLCHAIN \
     -DENABLE_BITCODE=OFF \
     -DBUILD_SHARED_LIBS=OFF \
     -DCMAKE_INSTALL_PREFIX=$PREFIX \
-    -DENABLE_TIFF=OFF -DENABLE_CURL=OFF \
-    -DBUILD_PROJSYNC=OFF \
-    -DSQLITE3_INCLUDE_DIR=$PREFIX/include \
-    -DSQLITE3_LIBRARY=$PREFIX/lib/libsqlite3.a \
+    -DCMAKE_BUILD_TYPE=Release \
     ..
 cmake --build .
 cmake --build . --target install
