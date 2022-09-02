@@ -61,19 +61,19 @@ then
 fi
 
 echo Downloading toolchain
-curl -L -o $CMTOOLCHAIN https://raw.githubusercontent.com/BeinerChes/ios-cmake/master/ios.toolchain.cmake
+#curl -L -o $CMTOOLCHAIN https://raw.githubusercontent.com/BeinerChes/ios-cmake/master/ios.toolchain.cmake
 
 echo Installing Homebrew package manager
-/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+#/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
 echo Installing CMAKE
-brew install cmake
-brew install llvm --HEAD
+#brew install cmake
+#brew install llvm --HEAD
 
 #git --version
 
-. build_sqlite.sh
+#. build_sqlite.sh
 
-. build_proj.sh
-. build_geos.sh
+#. build_proj.sh
+#. build_geos.sh
 . build_gdal.sh

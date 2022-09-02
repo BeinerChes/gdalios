@@ -3,11 +3,13 @@ echo READ https://github.com/OSGeo/gdal/blob/c355968b1dd8d101c61def354603d5c111f
 echo Build Gdal 
 cd $SRC
 
-echo $SRC/MrSID_DSDK-9.5.4.4709-ios80.universal.clang80/Raster_DSDK/include
 #https://www.extensis.com/support/developers
+if [ ! -e MrSID_DSDK-9.5.4.4709-ios80.universal.clang80.tar.gz ]
+then
 echo Downloading mrsid
 curl -L -O "https://bin.extensis.com/download/developer/MrSID_DSDK-9.5.4.4709-ios80.universal.clang80.tar.gz" 
 tar -xzf MrSID_DSDK-9.5.4.4709-ios80.universal.clang80.tar.gz
+fi
 
 if [ ! -e gdal-$PROJ_VERSION ]
 then
@@ -29,7 +31,7 @@ patch gdal-$GDAL_VERSION/CMakeLists.txt $SRC/PATCH_CMakeLists.txt
 
 
 cd gdal-$GDAL_VERSION
-rm -r build_$OS;
+#rm -r build_$OS;
 if [  ! -e build_$OS ]
 then
 mkdir build_$OS; 
@@ -51,11 +53,13 @@ cmake -DCMAKE_TOOLCHAIN_FILE=$CMTOOLCHAIN \
     -DIconv_LIBRARY=$SDKPATH/usr/lib/libiconv.tbd \
     -DGDAL_USE_GEOS=ON \
     -DGEOS_INCLUDE_DIR=$PREFIX/include \
-    -DGEOS_LIBRARY=$PREFIX/lib/libgeos_c.a \
+    -DGEOS_LIBRARY=$PREFIX/lib \
     -DGDAL_USE_MRSID=ON \
     -DMRSID_INCLUDE_DIR=$SRC/MrSID_DSDK-9.5.4.4709-ios80.universal.clang80/Raster_DSDK/include \
     -DMRSID_LIBRARY=$SRC/MrSID_DSDK-9.5.4.4709-ios80.universal.clang80/Raster_DSDK/lib \
     -DGDAL_ENABLE_DRIVER_JP2MRSID=YES \
+    -DOGR_BUILD_OPTIONAL_DRIVERS=ON \
+    -GDAL_BUILD_OPTIONAL_DRIVERS=ON \
     -DCMAKE_BUILD_TYPE=Release \
     ..
 cmake --build .
