@@ -7,13 +7,14 @@ export INSTALL=$HOME/dev/install
 export CMTOOLCHAIN=$DEV/ios.toolchain.cmake
 
 #check https://proj.org/download.html for Current Release
-export PROJ_VERSION=9.0.1
+export PROJ_VERSION=9.1.0
 export GDAL_VERSION=3.5.1
 export GEOS_VERSION=3.11.0
+export TIFF_VERSION=4.4.0
 
 # for iOS arm64 device
-export SDKPATH=$(xcrun --sdk iphoneos --show-sdk-path)
-export OS=OS64
+#export SDKPATH=$(xcrun --sdk iphoneos --show-sdk-path)
+export OS=OS64COMBINED
 export PREFIX=$INSTALL/$OS
 
 # for iOS x86_64 simulator
@@ -61,19 +62,22 @@ then
 fi
 
 echo Downloading toolchain
-#curl -L -o $CMTOOLCHAIN https://raw.githubusercontent.com/BeinerChes/ios-cmake/master/ios.toolchain.cmake
+curl -L -o $CMTOOLCHAIN https://raw.githubusercontent.com/BeinerChes/ios-cmake/master/ios.toolchain.cmake
 
-echo Installing Homebrew package manager
+#echo Installing Homebrew package manager
 #/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
-echo Installing CMAKE
+#echo Installing CMAKE
 #brew install cmake
 #brew install llvm --HEAD
 
 #git --version
 
 #. build_sqlite.sh
-
+#. build_libtiff.sh
+#brew install libtiff
 #. build_proj.sh
-#. build_geos.sh
+#  build_geos.sh
 . build_gdal.sh
+#. build_gdal.sh OS64 &
+#wait

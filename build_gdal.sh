@@ -1,9 +1,10 @@
 #!/usr/bin/env bash
-echo READ https://github.com/OSGeo/gdal/blob/c355968b1dd8d101c61def354603d5c111f35c95/doc/source/build_hints.rst
+#echo READ https://github.com/OSGeo/gdal/blob/c355968b1dd8d101c61def354603d5c111f35c95/doc/source/build_hints.rst
 echo Build Gdal 
 cd $SRC
 
 #https://www.extensis.com/support/developers
+echo MrSID 
 if [ ! -e MrSID_DSDK-9.5.4.4709-ios80.universal.clang80.tar.gz ]
 then
 echo Downloading mrsid
@@ -11,36 +12,42 @@ curl -L -O "https://bin.extensis.com/download/developer/MrSID_DSDK-9.5.4.4709-io
 tar -xzf MrSID_DSDK-9.5.4.4709-ios80.universal.clang80.tar.gz
 fi
 
-if [ ! -e gdal-$PROJ_VERSION ]
+
+
+if [ ! -e gdal-$GDAL_VERSION ]
 then
 echo Downloading gdal
+echo curl -L -O "https://github.com/OSGeo/gdal/releases/download/v$GDAL_VERSION/gdal-$GDAL_VERSION.tar.gz"
 curl -L -O "https://github.com/OSGeo/gdal/releases/download/v$GDAL_VERSION/gdal-$GDAL_VERSION.tar.gz"
 tar -xzf gdal-$GDAL_VERSION.tar.gz
 fi
+
+
 
 if [  $GDAL_VERSION = 3.5.1 ]
 then
 echo Downloading cmake patch
 curl -L "https://raw.githubusercontent.com/BeinerChes/gdalios/main/PATCH_3.5.1_configure.cmake" -o $SRC/PATCH_configure.cmake
-patch gdal-$GDAL_VERSION/cmake/helpers/configure.cmake $SRC/PATCH_configure.cmake
+#patch gdal-$GDAL_VERSION/cmake/helpers/configure.cmake $SRC/PATCH_configure.cmake
 fi
+
+
 
 echo Downloading cmake patch for tests
 curl -L "https://raw.githubusercontent.com/BeinerChes/gdalios/main/PATCH_CMakeLists.txt" -o $SRC/PATCH_CMakeLists.txt
-patch gdal-$GDAL_VERSION/CMakeLists.txt $SRC/PATCH_CMakeLists.txt
+#patch gdal-$GDAL_VERSION/CMakeLists.txt $SRC/PATCH_CMakeLists.txt
+
 
 
 cd gdal-$GDAL_VERSION
-#rm -r build_$OS;
-if [  ! -e build_$OS ]
-then
-mkdir build_$OS; 
-fi
+GDAL_OS=OS64
 
-cd build_$OS
+rm -r build_$GDAL_OS;
+mkdir build_$GDAL_OS; 
+cd build_$GDAL_OS
 
 cmake -DCMAKE_TOOLCHAIN_FILE=$CMTOOLCHAIN \
-    -DPLATFORM=$OS \
+    -DPLATFORM=$GDAL_OS \
     -DENABLE_BITCODE=OFF \
     -DCMAKE_INSTALL_PREFIX=$PREFIX \
     -DBUILD_SHARED_LIBS=OFF \
@@ -53,17 +60,15 @@ cmake -DCMAKE_TOOLCHAIN_FILE=$CMTOOLCHAIN \
     -DIconv_LIBRARY=$SDKPATH/usr/lib/libiconv.tbd \
     -DGDAL_USE_GEOS=ON \
     -DGEOS_INCLUDE_DIR=$PREFIX/include \
-    -DGEOS_LIBRARY=$PREFIX/lib \
+    -DGEOS_LIBRARY=$PREFIX/lib/$GDAL_OS \
     -DGDAL_USE_MRSID=ON \
     -DMRSID_INCLUDE_DIR=$SRC/MrSID_DSDK-9.5.4.4709-ios80.universal.clang80/Raster_DSDK/include \
     -DMRSID_LIBRARY=$SRC/MrSID_DSDK-9.5.4.4709-ios80.universal.clang80/Raster_DSDK/lib \
     -DGDAL_ENABLE_DRIVER_JP2MRSID=YES \
+    -DBUILD_TESTING=OFF \
     -DOGR_BUILD_OPTIONAL_DRIVERS=ON \
-    -GDAL_BUILD_OPTIONAL_DRIVERS=ON \
+    -DGDAL_BUILD_OPTIONAL_DRIVERS=ON \
     -DCMAKE_BUILD_TYPE=Release \
     ..
-cmake --build .
-cmake --build . --target install
-
-cd $SCRIPTS
-
+cmake --build . --config Release
+cmake --install . --config Release # Necessary to build combined library
