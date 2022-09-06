@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+set -e
 
 OS=$1
 PREFIX=$INSTALL/$OS
@@ -25,6 +26,7 @@ if [  $GDAL_VERSION = 3.5.1 ]
 then
 if [  ! -e $SRC/PATCH_configure.cmake ]
 then
+echo Patching
 curl -L "https://raw.githubusercontent.com/BeinerChes/gdalios/main/PATCH_3.5.1_configure.cmake" -o $SRC/PATCH_configure.cmake
 patch gdal-$GDAL_VERSION/cmake/helpers/configure.cmake $SRC/PATCH_configure.cmake
 fi
@@ -43,6 +45,8 @@ fi
 mkdir build_$OS;
 cd build_$OS
 
+#read https://github.com/OSGeo/gdal/blob/c355968b1dd8d101c61def354603d5c111f35c95/doc/source/build_hints.rst 
+
 cmake -DCMAKE_TOOLCHAIN_FILE=$CMTOOLCHAIN \
     -DPLATFORM=$OS \
     -DENABLE_BITCODE=OFF \
@@ -57,7 +61,7 @@ cmake -DCMAKE_TOOLCHAIN_FILE=$CMTOOLCHAIN \
     -DIconv_LIBRARY=$SDKPATH/usr/lib/libiconv.tbd \
     -DGDAL_USE_GEOS=ON \
     -DGEOS_INCLUDE_DIR=$PREFIX/include \
-    -DGEOS_LIBRARY=$PREFIX/lib/$GDAL_OS \
+    -DGEOS_LIBRARY=$PREFIX/lib/$OS \
     -DGDAL_USE_MRSID=ON \
     -DMRSID_INCLUDE_DIR=$SRC/MrSID_DSDK-9.5.4.4709-ios80.universal.clang80/Raster_DSDK/include \
     -DMRSID_LIBRARY=$SRC/MrSID_DSDK-9.5.4.4709-ios80.universal.clang80/Raster_DSDK/lib \

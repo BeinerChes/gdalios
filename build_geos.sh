@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
-echo Build geos 
+set -e
+
+OS=$1
+PREFIX=$INSTALL/$OS
+
 cd $SRC
 
 if [ ! -e geos-$GEOS_VERSION ]
@@ -10,10 +14,14 @@ tar -xzf geos-$GEOS_VERSION.tar.bz2
 fi
 
 cd geos-$GEOS_VERSION
-rm -r build_$OS; mkdir build_$OS; cd build_$OS
+if [ -d build_$OS ] 
+then
+rm -r build_$OS;
+fi
+mkdir build_$OS;
+cd build_$OS
 
-cmake  -G Xcode \
-    -DCMAKE_TOOLCHAIN_FILE=$CMTOOLCHAIN \
+cmake -DCMAKE_TOOLCHAIN_FILE=$CMTOOLCHAIN \
     -DPLATFORM=$OS \
     -DENABLE_BITCODE=OFF \
     -DBUILD_SHARED_LIBS=OFF \
