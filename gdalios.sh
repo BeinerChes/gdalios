@@ -4,21 +4,21 @@ set -e
 export SCRIPTS=$( pwd; )
 export DEV=$HOME/dev
 
-open $DEV
+
 
 export SRC=$HOME/dev/src
 export INSTALL=$HOME/dev/install
 export CMTOOLCHAIN=$DEV/ios.toolchain.cmake
 
 #check https://proj.org/download.html for Current Release
-export PROJ_VERSION=9.1.0
+export PROJ_VERSION=9.0.1
 #https://gdal.org/download.html#current-release
-export GDAL_VERSION=3.5.1
+export GDAL_VERSION=3.3.0
 export GEOS_VERSION=3.11.0
 export TIFF_VERSION=4.4.0
 
 
-if [ ! -e $DEV ] 
+if [ ! -d $DEV ] 
 then
     echo mkdir $DEV
     mkdir $DEV
@@ -63,27 +63,27 @@ fi
 #echo Installing SQLite
 
 
-. build_sqlite.sh OS64 2>> output_sqlite_OS64.log &
-. build_sqlite.sh SIMULATOR64 2>> output_sqlite_SIMULATOR64.log &
-#. build_sqlite.sh SIMULATORARM64 2>> output_sqlite_SIMULATORARM64.log &
-wait
-. build_libtiff.sh OS64 2>> output_libtiff_SIMULATOR64.log &
-. build_libtiff.sh SIMULATOR64 2>> output_libtiff_SIMULATOR64.log &
+#. build_sqlite.sh OS64 2> output_sqlite_OS64.log 
+#. build_sqlite.sh SIMULATOR64 2> output_sqlite_SIMULATOR64.log 
+
+#wait
+#. build_libtiff.sh OS64 2> output_libtiff_SIMULATOR64.log 
+#. build_libtiff.sh SIMULATOR64 2> output_libtiff_SIMULATOR64.log 
 #. build_libtiff.sh SIMULATORARM64 2>> output_libtiff_SIMULATOR64.log &
-wait
+#wait
 #brew install libtiff
-. build_proj.sh OS64 2>> output_proj_OS64_proj.log &
-. build_proj.sh SIMULATOR64 2>> output_proj_SIMULATOR64_proj.log &
+. build_proj.sh OS64 2> output_proj_OS64_proj.log 
+. build_proj.sh SIMULATOR64 2> output_proj_SIMULATOR64_proj.log 
 #. build_proj.sh SIMULATORARM64 2>> output_proj_SIMULATORARM64_proj.log &
-wait
-. build_geos.sh OS64 2>> output_geos_OS64.log &
-. build_geos.sh SIMULATOR64 2>> output_geos_SIMULATOR64.log &
+#wait
+. build_geos.sh OS64 2> output_geos_OS64.log
+. build_geos.sh SIMULATOR64 2> output_geos_SIMULATOR64.log
 #. build_geos.sh SIMULATORARM64 2>> output_geos_SIMULATORARM64.log &
-wait
-. build_gdal.sh OS64 2>> output_gdal_SIMULATOR64.log &
-. build_gdal.sh SIMULATOR64 2>> output_gdal_SIMULATOR64.log &
+#wait
+. build_gdal.sh OS64 2> output_gdal_SIMULATOR64.log
+. build_gdal.sh SIMULATOR64 2> output_gdal_SIMULATOR64.log 
 #. build_gdal.sh SIMULATORARM64 2>> output_gdal_SIMULATORARM64.log &
-wait
+#alpwait
 
 if [ ! -d $INSTALL/Combined ] 
 then
@@ -117,8 +117,6 @@ lipo -create -output $INSTALL/Combined/libgdal.a \
     $INSTALL/SIMULATOR64/lib/libproj.a \
 
 fi
-
-return 0
 
 if [ ! -d $INSTALL/Framework ] 
 then

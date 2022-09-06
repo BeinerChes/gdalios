@@ -7,7 +7,6 @@ cd $SRC
 
 if [ ! -e $SRC/sqlite-amalgamation ]
 then
-echo Downloading sqlite
 git clone https://github.com/BeinerChes/sqlite-amalgamation
 fi
 
