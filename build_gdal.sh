@@ -1,18 +1,17 @@
 #!/usr/bin/env bash
-#echo READ https://github.com/OSGeo/gdal/blob/c355968b1dd8d101c61def354603d5c111f35c95/doc/source/build_hints.rst
-echo Build Gdal 
+
+OS=$1
+PREFIX=$INSTALL/$OS
+
 cd $SRC
 
 #https://www.extensis.com/support/developers
-echo MrSID 
 if [ ! -e MrSID_DSDK-9.5.4.4709-ios80.universal.clang80.tar.gz ]
 then
 echo Downloading mrsid
 curl -L -O "https://bin.extensis.com/download/developer/MrSID_DSDK-9.5.4.4709-ios80.universal.clang80.tar.gz" 
 tar -xzf MrSID_DSDK-9.5.4.4709-ios80.universal.clang80.tar.gz
 fi
-
-
 
 if [ ! -e gdal-$GDAL_VERSION ]
 then
@@ -22,32 +21,30 @@ curl -L -O "https://github.com/OSGeo/gdal/releases/download/v$GDAL_VERSION/gdal-
 tar -xzf gdal-$GDAL_VERSION.tar.gz
 fi
 
-
-
 if [  $GDAL_VERSION = 3.5.1 ]
 then
-echo Downloading cmake patch
+if [  ! -e $SRC/PATCH_configure.cmake ]
+then
 curl -L "https://raw.githubusercontent.com/BeinerChes/gdalios/main/PATCH_3.5.1_configure.cmake" -o $SRC/PATCH_configure.cmake
-#patch gdal-$GDAL_VERSION/cmake/helpers/configure.cmake $SRC/PATCH_configure.cmake
+patch gdal-$GDAL_VERSION/cmake/helpers/configure.cmake $SRC/PATCH_configure.cmake
+fi
 fi
 
-
-
-echo Downloading cmake patch for tests
-curl -L "https://raw.githubusercontent.com/BeinerChes/gdalios/main/PATCH_CMakeLists.txt" -o $SRC/PATCH_CMakeLists.txt
+#echo Downloading cmake patch for tests
+#curl -L "https://raw.githubusercontent.com/BeinerChes/gdalios/main/PATCH_CMakeLists.txt" -o $SRC/PATCH_CMakeLists.txt
 #patch gdal-$GDAL_VERSION/CMakeLists.txt $SRC/PATCH_CMakeLists.txt
 
-
-
 cd gdal-$GDAL_VERSION
-GDAL_OS=OS64
 
-rm -r build_$GDAL_OS;
-mkdir build_$GDAL_OS; 
-cd build_$GDAL_OS
+if [ -d build_$OS ] 
+then
+rm -r build_$OS;
+fi
+mkdir build_$OS;
+cd build_$OS
 
 cmake -DCMAKE_TOOLCHAIN_FILE=$CMTOOLCHAIN \
-    -DPLATFORM=$GDAL_OS \
+    -DPLATFORM=OS64COMBINED \
     -DENABLE_BITCODE=OFF \
     -DCMAKE_INSTALL_PREFIX=$PREFIX \
     -DBUILD_SHARED_LIBS=OFF \
@@ -70,5 +67,7 @@ cmake -DCMAKE_TOOLCHAIN_FILE=$CMTOOLCHAIN \
     -DGDAL_BUILD_OPTIONAL_DRIVERS=ON \
     -DCMAKE_BUILD_TYPE=Release \
     ..
-cmake --build . --config Release
-cmake --install . --config Release # Necessary to build combined library
+cmake --build .
+cmake --build . --target install
+
+cd $SCRIPTS

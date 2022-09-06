@@ -1,4 +1,8 @@
 #!/usr/bin/env bash
+
+OS=$1
+PREFIX=$INSTALL/$OS
+
 cd $SRC
 
 if [ ! -e $SRC/sqlite-amalgamation ]
@@ -8,12 +12,15 @@ git clone https://github.com/BeinerChes/sqlite-amalgamation
 fi
 
 cd sqlite-amalgamation
-rm -r build_$OS; 
-mkdir build_$OS; 
+if [ -d build_$OS ] 
+then
+    rm -r build_$OS; 
+fi    
+
+mkdir build_$OS
 cd build_$OS
 
-cmake -G Xcode \
-    -DCMAKE_TOOLCHAIN_FILE=$CMTOOLCHAIN \
+cmake -DCMAKE_TOOLCHAIN_FILE=$CMTOOLCHAIN \
     -DPLATFORM=$OS \
     -DENABLE_BITCODE=OFF \
     -DCMAKE_INSTALL_PREFIX=$PREFIX \
@@ -24,11 +31,8 @@ cmake -G Xcode \
     -DCMAKE_BUILD_TYPE=Release \
     ..
 
-#cmake --build .
-#cmake --build . --target install
-
-cmake --build . --config Release
-cmake --install . --config Release # Necessary to build combined library
+cmake --build .
+cmake --build . --target install
 
 cd $SCRIPTS
 
