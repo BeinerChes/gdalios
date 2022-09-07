@@ -37,6 +37,6 @@ cmake -G Xcode \
     -DCMAKE_BUILD_TYPE=Release \
     ..
 cmake --build .
-cmake --build . --target install
+cmake --build . --config Release # This is the important line!
 
 cd $SCRIPTS

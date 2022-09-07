@@ -61,7 +61,7 @@ echo GDAL
 #echo Installing SQLite
 
 
-#. build_sqlite.sh OS64 2> output_sqlite_OS64.log 
+. build_sqlite.sh OS64 2> output_sqlite_OS64.log 
 #. build_sqlite.sh SIMULATOR64 2> output_sqlite_SIMULATOR64.log 
 
 #wait
@@ -71,7 +71,9 @@ echo GDAL
 #wait
 #brew install libtiff
 #. build_proj.sh OS64 2> output_proj_OS64_proj.log 
-#. build_proj.sh SIMULATOR64 2> output_proj_SIMULATOR64_proj.log 
+#exit
+. build_proj.sh SIMULATOR64 2> output_proj_SIMULATOR64_proj.log 
+exit
 #. build_proj.sh SIMULATORARM64 2>> output_proj_SIMULATORARM64_proj.log &
 #wait
 #. build_geos.sh OS64 2> output_geos_OS64.log
@@ -97,7 +99,7 @@ lipo -create -output $INSTALL/Combined/libproj.a \
     $INSTALL/proj/OS64/lib/libproj.a \
     $INSTALL/proj/SIMULATOR64/lib/libproj.a \
 
-exit
+
 
 if [ ! -d $INSTALL/Framework ] 
 then
