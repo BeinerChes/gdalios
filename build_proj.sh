@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 OS=$1
-PREFIX=$INSTALL/$OS
+PREFIX=$INSTALL/proj/$OS
 
 cd $SRC
 
@@ -20,20 +20,20 @@ fi
 mkdir build_$OS;
 cd build_$OS
 
-cmake -DCMAKE_TOOLCHAIN_FILE=$CMTOOLCHAIN \
+cmake -G Xcode \
+    -DCMAKE_TOOLCHAIN_FILE=$CMTOOLCHAIN \
     -DPLATFORM=$OS \
     -DENABLE_BITCODE=OFF \
     -DBUILD_SHARED_LIBS=OFF \
     -DCMAKE_INSTALL_PREFIX=$PREFIX \
-    -DENABLE_TIFF=ON \
-    -DTIFF_INCLUDE_DIR=/usr/local/Cellar/libtiff/4.4.0_1/include \
-    -DTIFF_LIBRARY_RELEASE=/usr/local/Cellar/libtiff/4.4.0_1/lib/libtiff.a \
+    -DENABLE_TIFF=OFF \
     -DENABLE_CURL=OFF \
     -DBUILD_PROJSYNC=OFF \
     -DBUILD_TESTING=OFF \
     -DBUILD_APPS=OFF \
-    -DSQLITE3_INCLUDE_DIR=$PREFIX/include \
-    -DSQLITE3_LIBRARY=$PREFIX/lib/libsqlite3.a \
+    -DSQLITE3_INCLUDE_DIR=$INSTALL/sqlite/$OS/include \
+    -DSQLITE3_LIBRARY=$INSTALL/sqlite/$OS/lib/libsqlite3.a \
+    -DPRODUCT_BUNDLE_IDENTIFIER=com.alpinelis.proj_ios \
     -DCMAKE_BUILD_TYPE=Release \
     ..
 cmake --build .

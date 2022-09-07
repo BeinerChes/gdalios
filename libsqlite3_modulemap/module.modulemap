@@ -1,0 +1,5 @@
+module libsqlite3 {
+  header "sqlite3.h"
+  link "libsqlite3"
+  export *
+}

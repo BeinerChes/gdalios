@@ -37,7 +37,6 @@ fi
 #patch gdal-$GDAL_VERSION/CMakeLists.txt $SRC/PATCH_CMakeLists.txt
 
 cd gdal-$GDAL_VERSION
-
 if [ -d build_$OS ] 
 then
 rm -r build_$OS;

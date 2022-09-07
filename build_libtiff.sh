@@ -21,7 +21,8 @@ fi
 mkdir build_$OS;
 cd build_$OS
 
-cmake -DCMAKE_TOOLCHAIN_FILE=$CMTOOLCHAIN \
+cmake -G Xcode \
+    -DCMAKE_TOOLCHAIN_FILE=$CMTOOLCHAIN \
     -DPLATFORM=$OS \
     -DENABLE_BITCODE=OFF \
     -DCMAKE_INSTALL_PREFIX=$PREFIX \
@@ -30,6 +31,6 @@ cmake -DCMAKE_TOOLCHAIN_FILE=$CMTOOLCHAIN \
     ..
 
 cmake --build .
-#cmake --build . --target install
+cmake --build . --target install
 
 cd $SCRIPTS

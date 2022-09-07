@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 OS=$1
-PREFIX=$INSTALL/$OS
+PREFIX=$INSTALL/sqlite/$OS
 
 cd $SRC
 

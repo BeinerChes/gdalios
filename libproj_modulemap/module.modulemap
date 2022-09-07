@@ -1,0 +1,5 @@
+module libproj {
+  header "proj.h"
+  link "libproj"
+  export *
+}
