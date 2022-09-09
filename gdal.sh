@@ -23,12 +23,12 @@ export GDAL_VERSION=3.5.1
 #. build_proj.sh SIMULATORARM64
 #. frame_proj.sh
 
-#export SDKPATH=$(xcrun --sdk iphoneos --show-sdk-path)
-#. build_gdal.sh OS64
-#export SDKPATH=$(xcrun --sdk iphonesimulator --show-sdk-path)
-#. build_gdal.sh SIMULATOR64
-#export SDKPATH=$(xcrun --sdk iphonesimulator --show-sdk-path)
-#. build_gdal.sh SIMULATORARM64
+export SDKPATH=$(xcrun --sdk iphoneos --show-sdk-path)
+. build_gdal.sh OS64
+export SDKPATH=$(xcrun --sdk iphonesimulator --show-sdk-path)
+. build_gdal.sh SIMULATOR64
+export SDKPATH=$(xcrun --sdk iphonesimulator --show-sdk-path)
+. build_gdal.sh SIMULATORARM64
 . frame_proj.sh
 . frame_gdal.sh
 

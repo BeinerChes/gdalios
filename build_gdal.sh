@@ -48,6 +48,7 @@ cmake -DCMAKE_TOOLCHAIN_FILE=$CMTOOLCHAIN \
     -DBUILD_APPS=OFF \
     -DBUILD_PYTHON_BINDINGS=OFF \
     -DPROJ_ROOT=$INSTALL/proj/$OS \
+    -DCMAKE_CXX_FLAGS="${CMAKE_CXX_FLAGS} -std=c++11 -stdlib=libc++" \
     -DSQLITE3_INCLUDE_DIR=$INSTALL/sqlite/$OS/include \
     -DSQLITE3_LIBRARY=$INSTALL/sqlite/$OS/lib/libsqlite3.a \
     -DIconv_INCLUDE_DIR=$SDKPATH/usr \
