@@ -1,0 +1,5 @@
+module Gdal_SQLite {
+    header "sqlite3.h"
+    link "Gdal_SQLite"
+    export *
+}

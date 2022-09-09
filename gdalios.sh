@@ -57,8 +57,9 @@ fi
 #git --version
 #echo Installing SQLite
 
-. build_sqlite.sh OS64 2>> output_OS64.log &
-. build_sqlite.sh SIMULATOR64 2>> output_SIMULATOR64.log &
+. build_sqlite.sh
+exit
+#. build_sqlite.sh SIMULATOR64 2>> output_SIMULATOR64.log &
 wait
 #echo Installing libtiff
 #. build_libtiff.sh OS64

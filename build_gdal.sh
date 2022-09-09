@@ -1,9 +1,10 @@
 #!/usr/bin/env bash
 
 OS=$1
-PREFIX=$INSTALL/$OS
+PREFIX=$INSTALL/gdal/$OS
 
 cd $SRC
+
 
 #https://www.extensis.com/support/developers
 if [ ! -e MrSID_DSDK-9.5.4.4709-ios80.universal.clang80.tar.gz ]
@@ -30,43 +31,40 @@ patch gdal-$GDAL_VERSION/cmake/helpers/configure.cmake $SRC/PATCH_configure.cmak
 fi
 fi
 
-#echo Downloading cmake patch for tests
-#curl -L "https://raw.githubusercontent.com/BeinerChes/gdalios/main/PATCH_CMakeLists.txt" -o $SRC/PATCH_CMakeLists.txt
-#patch gdal-$GDAL_VERSION/CMakeLists.txt $SRC/PATCH_CMakeLists.txt
-
 cd gdal-$GDAL_VERSION
-
-if [ -d build_$OS ] 
+if [ ! -d build_$OS ] 
 then
-rm -r build_$OS;
-fi
 mkdir build_$OS;
+fi
 cd build_$OS
 
+
+#https://gdal.org/build_hints.html
 cmake -DCMAKE_TOOLCHAIN_FILE=$CMTOOLCHAIN \
     -DPLATFORM=$OS \
-    -DENABLE_BITCODE=OFF \
+    -DENABLE_BITCODE=ON \
     -DCMAKE_INSTALL_PREFIX=$PREFIX \
     -DBUILD_SHARED_LIBS=OFF \
     -DBUILD_APPS=OFF \
     -DBUILD_PYTHON_BINDINGS=OFF \
-    -DPROJ_ROOT=$PREFIX \
-    -DSQLITE3_INCLUDE_DIR=$PREFIX/include \
-    -DSQLITE3_LIBRARY=$PREFIX/lib/libsqlite3.a \
+    -DPROJ_ROOT=$INSTALL/proj/$OS \
+    -DSQLITE3_INCLUDE_DIR=$INSTALL/sqlite/$OS/include \
+    -DSQLITE3_LIBRARY=$INSTALL/sqlite/$OS/lib/libsqlite3.a \
     -DIconv_INCLUDE_DIR=$SDKPATH/usr \
     -DIconv_LIBRARY=$SDKPATH/usr/lib/libiconv.tbd \
-    -DGDAL_USE_GEOS=ON \
-    -DGEOS_INCLUDE_DIR=$PREFIX/include \
-    -DGEOS_LIBRARY=$PREFIX/lib/$GDAL_OS \
+    -DGDAL_USE_GEOS=OFF \
     -DGDAL_USE_MRSID=ON \
     -DMRSID_INCLUDE_DIR=$SRC/MrSID_DSDK-9.5.4.4709-ios80.universal.clang80/Raster_DSDK/include \
     -DMRSID_LIBRARY=$SRC/MrSID_DSDK-9.5.4.4709-ios80.universal.clang80/Raster_DSDK/lib \
-    -DGDAL_ENABLE_DRIVER_JP2MRSID=YES \
     -DBUILD_TESTING=OFF \
-    -DOGR_BUILD_OPTIONAL_DRIVERS=ON \
-    -DGDAL_BUILD_OPTIONAL_DRIVERS=ON \
+    -DOGR_BUILD_OPTIONAL_DRIVERS=OFF \
+    -DGDAL_BUILD_OPTIONAL_DRIVERS=OFF \
     -DCMAKE_BUILD_TYPE=Release \
+    -DGDAL_HIDE_INTERNAL_SYMBOLS=OFF \
+    -DGDAL_USE_INTERNAL_LIBS=ON \
+    -DGDAL_USE_EXTERNAL_LIBS=OFF \
     ..
+
 cmake --build .
 cmake --build . --target install
 
