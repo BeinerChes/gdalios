@@ -31,9 +31,10 @@ cmake -DCMAKE_TOOLCHAIN_FILE=$CMTOOLCHAIN \
     -DENABLE_CURL=OFF \
     -DBUILD_PROJSYNC=OFF \
     -DBUILD_TESTING=OFF \
+    -DCMAKE_CXX_STANDARD=17 \
     -DCMAKE_BUILD_TYPE=Release \
     ..
-  
+ccmake ..
 cmake --build .
 cmake --build . --target install
 

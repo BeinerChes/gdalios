@@ -1,5 +1,5 @@
-module Gdal_Proj {
+module Proj {
     header "proj.h"
-    link "Gdal_Proj"
+    link "Proj"
     export *
 }
