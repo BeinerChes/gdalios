@@ -14,7 +14,9 @@ export CURL_VERSION=7.85.0
 export LIBJPEG_TURBO_VERSION=2.1.4
 export TIFF_VERSION=4.4.0
 export PROJ_VERSION=9.1.0
+export GEOS_VERSION=3.11.0
 export GDAL_VERSION=3.5.2
+
 
 
 if [ ! -d $DEV ] 
@@ -42,6 +44,7 @@ open $DEV
 . tiff/download.sh &
 . curl/download.sh &
 . proj/download.sh &
+. geos/download.sh &
 . gdal/download.sh &
 wait
 
@@ -50,21 +53,21 @@ export SDKPATH=$(xcrun --sdk iphoneos --show-sdk-path)
 #. jpeg/build.sh OS64 
 #. tiff/build.sh OS64 
 #. proj/build.sh OS64
-. gdal/build.sh OS64
-exit 0
+#. geos/build.sh OS64
+#. gdal/build.sh OS64
 
 export SDKPATH=$(xcrun --sdk iphonesimulator --show-sdk-path)
 #. sqlite/build.sh SIMULATOR64
 #. jpeg/build.sh SIMULATOR64
 #. tiff/build.sh SIMULATOR64
 #. proj/build.sh SIMULATOR64
-#. gdal/build.sh SIMULATOR64
+. gdal/build.sh SIMULATOR64
 
 #. sqlite/build.sh SIMULATORARM64
 #. jpeg/build.sh SIMULATORARM64
 #. tiff/build.sh SIMULATORARM64
 #. proj/build.sh SIMULATORARM64
-#. gdal/build.sh SIMULATORARM64
+. gdal/build.sh SIMULATORARM64
 
 #. proj/pack.sh
 . gdal/pack.sh

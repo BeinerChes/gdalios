@@ -23,6 +23,8 @@ libtool -static -o \
     $INSTALL/sqlite/OS64/lib/libsqlite3.a \
     $INSTALL/jpeg/OS64/lib/libjpeg.a \
     $INSTALL/tiff/OS64/lib/libtiff.a \
+    $INSTALL/geos/OS64/lib/libgeos_c.a \
+    $INSTALL/geos/OS64/lib/libgeos.a \
 
 libtool -static -o \
     $INSTALL/gdal/SIMULATOR64/lib/libgdal_linked.a \
@@ -31,6 +33,9 @@ libtool -static -o \
     $INSTALL/sqlite/SIMULATOR64/lib/libsqlite3.a \
     $INSTALL/jpeg/SIMULATOR64/lib/libjpeg.a \
     $INSTALL/tiff/SIMULATOR64/lib/libtiff.a \
+    $INSTALL/geos/SIMULATOR64/lib/libgeos_c.a \
+    $INSTALL/geos/SIMULATOR64/lib/libgeos.a \
+    
 
 libtool -static -o \
     $INSTALL/gdal/SIMULATORARM64/lib/libgdal_linked.a \
@@ -39,6 +44,8 @@ libtool -static -o \
     $INSTALL/sqlite/SIMULATORARM64/lib/libsqlite3.a \
     $INSTALL/jpeg/SIMULATORARM64/lib/libjpeg.a \
     $INSTALL/tiff/SIMULATORARM64/lib/libtiff.a \
+    $INSTALL/geos/SIMULATORARM64/lib/libgeos_c.a \
+    $INSTALL/geos/SIMULATORARM64/lib/libgeos.a \
 
 cp -i $INSTALL/gdal/OS64/lib/libgdal_linked.a $DEV/framework/gdal/ios-arm64/library/libgdal.a
 lipo -create -output $DEV/framework/gdal/ios-x86_64-arm64-simulator/library/libgdal.a \
