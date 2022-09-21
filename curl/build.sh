@@ -1,8 +1,8 @@
 #!/bin/sh
 OS=$1
-PREFIX=$INSTALL/sqlite/$OS
+PREFIX=$INSTALL/curl/$OS
 
-cd $SRC/sqlite-amalgamation
+cd $SRC/curl-$CURL_VERSION
 
 if [ -d build_$OS ] 
 then
@@ -18,12 +18,11 @@ cmake -G Xcode \
     -DENABLE_BITCODE=OFF \
     -DCMAKE_INSTALL_PREFIX=$PREFIX \
     -DCMAKE_BUILD_TYPE=Release \
-    -DBUILD_SHARED_LIBS=OFF \
-    -DSQLITE_ENABLE_RTREE=ON \
-    -DSQLITE_ENABLE_COLUMN_METADATA=ON \
-    -DSQLITE_OMIT_DECLTYPE=OFF \
     ..
 
+ccmake ..
+
+return 0
 cmake --build . --config Release --target install
 
 cd $SCRIPTS

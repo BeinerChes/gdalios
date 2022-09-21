@@ -1,8 +1,8 @@
 #!/bin/sh
 OS=$1
-PREFIX=$INSTALL/sqlite/$OS
+PREFIX=$INSTALL/jpeg/$OS
 
-cd $SRC/sqlite-amalgamation
+cd $SRC/libjpeg-turbo-$LIBJPEG_TURBO_VERSION
 
 if [ -d build_$OS ] 
 then
@@ -11,17 +11,15 @@ fi
 mkdir build_$OS
 cd build_$OS
 
-cmake -G Xcode \
-    -DCMAKE_TOOLCHAIN_FILE=$CMTOOLCHAIN \
+cmake -DCMAKE_TOOLCHAIN_FILE=$CMTOOLCHAIN \
     -DDEPLOYMENT_TARGET=$DEPLOYMENT_TARGET \
     -DPLATFORM=$OS \
     -DENABLE_BITCODE=OFF \
     -DCMAKE_INSTALL_PREFIX=$PREFIX \
     -DCMAKE_BUILD_TYPE=Release \
-    -DBUILD_SHARED_LIBS=OFF \
-    -DSQLITE_ENABLE_RTREE=ON \
-    -DSQLITE_ENABLE_COLUMN_METADATA=ON \
-    -DSQLITE_OMIT_DECLTYPE=OFF \
+    -DENABLE_STATIC=ON \
+    -DENABLE_SHARED=OFF \
+    -DWITH_TURBOJPEG=OFF \
     ..
 
 cmake --build . --config Release --target install

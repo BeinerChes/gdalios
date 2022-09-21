@@ -10,6 +10,11 @@ export DEPLOYMENT_TARGET='14.0'
 
 export CMTOOLCHAIN=$SCRIPTS/ios.toolchain.cmake
 
+export LIBJPEG_TURBO_VERSION=2.1.4
+export TIFF_VERSION=4.4.0
+export PROJ_VERSION=9.1.0
+export CURL_VERSION=7.85.0
+
 if [ ! -d $DEV ] 
 then
     mkdir -p $DEV
@@ -28,12 +33,33 @@ fi
 if [ ! -f "$CMTOOLCHAIN" ]; then
     curl -L -o $CMTOOLCHAIN https://raw.githubusercontent.com/BeinerChes/ios-cmake/master/ios.toolchain.cmake    
 fi
-
-. sqlite/download.sh
-export SDKPATH=$(xcrun --sdk iphoneos --show-sdk-path)
-. sqlite/build.sh OS64
-export SDKPATH=$(xcrun --sdk iphonesimulator --show-sdk-path)
-. sqlite/build.sh SIMULATOR64
-. sqlite/build.sh SIMULATORARM64
-
 open $DEV
+
+#. sqlite/download.sh
+#. jpeg/download.sh
+. tiff/download.sh
+#. curl/download.sh
+#. proj/download.sh
+
+
+
+export SDKPATH=$(xcrun --sdk iphoneos --show-sdk-path)
+#. sqlite/build.sh OS64
+#. jpeg/build.sh OS64
+#. tiff/build.sh OS64
+#. curl/build.sh OS64
+#. proj/build.sh OS64
+
+
+export SDKPATH=$(xcrun --sdk iphonesimulator --show-sdk-path)
+#. sqlite/build.sh SIMULATOR64
+#. jpeg/build.sh SIMULATOR64
+#. tiff/build.sh SIMULATOR64
+#. proj/build.sh SIMULATOR64
+
+#. sqlite/build.sh SIMULATORARM64
+#. jpeg/build.sh SIMULATORARM64
+#. tiff/build.sh SIMULATORARM64
+#. proj/build.sh SIMULATORARM64
+
+. proj/pack.sh
