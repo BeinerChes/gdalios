@@ -17,10 +17,10 @@ lipo -create -output $INSTALL/sqlite/iphonesimulator/lib/libsqlite3.a \
     $INSTALL/sqlite/SIMULATORARM64/lib/libsqlite3.a \
     $INSTALL/sqlite/SIMULATOR64/lib/libsqlite3.a
 
-if [ -e $INSTALL/Framework/libsqlite3.xcframework ] 
-then
-    rm -rf $INSTALL/Framework/libsqlite3.xcframework
-fi
+#if [ -e $INSTALL/Framework/libsqlite3.xcframework ] 
+#then
+#    rm -rf $INSTALL/Framework/libsqlite3.xcframework
+#fi
 
 xcodebuild -create-xcframework \
 -library $INSTALL/sqlite/iphoneos/lib/libsqlite3.a \

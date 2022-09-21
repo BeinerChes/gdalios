@@ -13,12 +13,13 @@ export GDAL_VERSION=3.5.1
 
 . prepare.sh
 
-. build_sqlite.sh OS64
+#. build_sqlite.sh OS64
 #. build_sqlite.sh SIMULATOR64
 #. build_sqlite.sh SIMULATORARM64
 #. frame_sqlite.sh
 
-#. build_proj.sh OS64
+#export SDKPATH=$(xcrun --sdk iphoneos --show-sdk-path)
+. build_proj.sh OS64
 #. build_proj.sh SIMULATOR64
 #. build_proj.sh SIMULATORARM64
 #. frame_proj.sh

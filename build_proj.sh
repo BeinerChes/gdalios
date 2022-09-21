@@ -12,17 +12,20 @@ tar -xzf proj-$PROJ_VERSION.tar.gz
 fi
 
 cd proj-$PROJ_VERSION
-if [ ! -d build_$OS ] 
+if [ -d build_$OS ] 
 then
-mkdir build_$OS;
+rm -r build_$OS
 fi
+mkdir build_$OS
 cd build_$OS
 
 #https://proj.org/install.html#cmake-configure-options
 cmake -DCMAKE_TOOLCHAIN_FILE=$CMTOOLCHAIN \
     -DPLATFORM=$OS \
+    -DCXX=/usr/bin/g++ \
     -DENABLE_BITCODE=ON \
     -DBUILD_SHARED_LIBS=OFF \
+    -DENABLE_VISIBILITY=ON \
     -DCMAKE_INSTALL_PREFIX=$PREFIX \
     -DBUILD_APPS=OFF \
     -DSQLITE3_INCLUDE_DIR=$INSTALL/sqlite/$OS/include \
@@ -31,10 +34,8 @@ cmake -DCMAKE_TOOLCHAIN_FILE=$CMTOOLCHAIN \
     -DENABLE_CURL=OFF \
     -DBUILD_PROJSYNC=OFF \
     -DBUILD_TESTING=OFF \
-    -DCMAKE_CXX_STANDARD=17 \
     -DCMAKE_BUILD_TYPE=Release \
     ..
-ccmake ..
 cmake --build .
 cmake --build . --target install
 

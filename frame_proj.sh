@@ -5,14 +5,17 @@ mkdir -p $INSTALL/proj/iphoneos/lib \
     $INSTALL/proj/iphoneos/Headers \
     $INSTALL/proj/iphonesimulator/Headers \
 
+cp $SCRIPTS/proj.modulemap $INSTALL/proj/iphoneos/Headers/module.modulemap
+cp $SCRIPTS/proj.modulemap $INSTALL/proj/iphonesimulator/Headers/module.modulemap
+
 cp -r $INSTALL/proj/OS64/include/* $INSTALL/proj/iphoneos/Headers 
 cp -r $INSTALL/proj/SIMULATOR64/include/* $INSTALL/proj/iphonesimulator/Headers
 
 cp -r $INSTALL/sqlite/OS64/include/* $INSTALL/proj/iphoneos/Headers 
 cp -r $INSTALL/sqlite/SIMULATOR64/include/* $INSTALL/proj/iphonesimulator/Headers
 
-cp $SCRIPTS/proj.modulemap $INSTALL/proj/iphoneos/Headers/module.modulemap
-cp $SCRIPTS/proj.modulemap $INSTALL/proj/iphonesimulator/Headers/module.modulemap
+cp $SCRIPTS/proj.modulemap $INSTALL/proj/OS64/include/module.modulemap
+cp $SCRIPTS/proj.modulemap $INSTALL/proj/SIMULATOR64/include/module.modulemap
 
 lipo -create -output $INSTALL/proj/iphoneos/lib/libproj.a \
     $INSTALL/proj/OS64/lib/libproj.a
@@ -36,3 +39,10 @@ xcodebuild -create-xcframework \
 -library $INSTALL/proj/iphonesimulator/lib/libproj.a \
 -headers $INSTALL/proj/iphonesimulator/Headers/ \
 -output $INSTALL/Framework/libproj.xcframework
+
+#xcodebuild -create-xcframework \
+#-library $INSTALL/proj/OS64/lib/libproj.a \
+#-headers $INSTALL/proj/OS64/include/ \
+#-library $INSTALL/proj/SIMULATOR64/lib/libproj.a \
+#-headers $INSTALL/proj/SIMULATOR64/include/ \
+#-output $INSTALL/Framework/libproj.xcframework
