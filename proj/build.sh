@@ -12,8 +12,7 @@ mkdir build_$OS
 cd build_$OS
 
 #https://proj.org/install.html#cmake-configure-options
-cmake -G Xcode \
-    -DCMAKE_TOOLCHAIN_FILE=$CMTOOLCHAIN \
+cmake -DCMAKE_TOOLCHAIN_FILE=$CMTOOLCHAIN \
     -DDEPLOYMENT_TARGET=$DEPLOYMENT_TARGET \
     -DPLATFORM=$OS \
     -DENABLE_BITCODE=OFF \
