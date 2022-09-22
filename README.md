@@ -1,3 +1,9 @@
+Gdal XCFramefork 
+
+https://gdal.org/
+
+Gdal version 3.5.2
+
 Download the XCFramework from 
 https://github.com/BeinerChes/gdalios/releases/
 
