@@ -1,3 +1,8 @@
+Download the XCFramework from 
+https://github.com/BeinerChes/gdalios/releases/
+
+or build
+
 ```
 git clone https://github.com/BeinerChes/gdalios.git
 cd gdalios
