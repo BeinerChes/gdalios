@@ -1,7 +1,7 @@
-module Gdal {
+module gdal {
     header "gdal.h"
     header "ogr_api.h"
     header "ogr_srs_api.h"
-    link "Gdal"
+    link "gdal"
     export *
 }

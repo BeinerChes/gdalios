@@ -1,0 +1,5 @@
+module Proj_C_Api {
+    header "proj.h"
+    link "Proj_C_Api"
+    export *
+}
