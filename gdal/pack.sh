@@ -16,6 +16,9 @@ cp -r $INSTALL/gdal/SIMULATOR64/include/* $DEV/framework/gdal/ios-x86_64-arm64-s
 cp $SCRIPTS/gdal/module.modulemap $DEV/framework/gdal/ios-arm64/Headers/module.modulemap
 cp $SCRIPTS/gdal/module.modulemap $DEV/framework/gdal/ios-x86_64-arm64-simulator/Headers/module.modulemap
 
+
+
+
 libtool -static -o \
     $INSTALL/gdal/OS64/lib/libgdal_linked.a \
     $INSTALL/gdal/OS64/lib/libgdal.a \
@@ -35,7 +38,6 @@ libtool -static -o \
     $INSTALL/tiff/SIMULATOR64/lib/libtiff.a \
     $INSTALL/geos/SIMULATOR64/lib/libgeos_c.a \
     $INSTALL/geos/SIMULATOR64/lib/libgeos.a \
-    
 
 libtool -static -o \
     $INSTALL/gdal/SIMULATORARM64/lib/libgdal_linked.a \

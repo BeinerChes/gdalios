@@ -49,25 +49,26 @@ open $DEV
 wait
 
 export SDKPATH=$(xcrun --sdk iphoneos --show-sdk-path)
-#. sqlite/build.sh OS64
-#. jpeg/build.sh OS64 
-#. tiff/build.sh OS64 
-#. proj/build.sh OS64
-#. geos/build.sh OS64
-#. gdal/build.sh OS64
+. sqlite/build.sh OS64
+. jpeg/build.sh OS64 
+. tiff/build.sh OS64 
+. proj/build.sh OS64
+. geos/build.sh OS64
+. gdal/build.sh OS64
 
 export SDKPATH=$(xcrun --sdk iphonesimulator --show-sdk-path)
-#. sqlite/build.sh SIMULATOR64
-#. jpeg/build.sh SIMULATOR64
-#. tiff/build.sh SIMULATOR64
-#. proj/build.sh SIMULATOR64
+. sqlite/build.sh SIMULATOR64
+. jpeg/build.sh SIMULATOR64
+. tiff/build.sh SIMULATOR64
+. proj/build.sh SIMULATOR64
+. geos/build.sh SIMULATOR64
 . gdal/build.sh SIMULATOR64
 
-#. sqlite/build.sh SIMULATORARM64
-#. jpeg/build.sh SIMULATORARM64
-#. tiff/build.sh SIMULATORARM64
-#. proj/build.sh SIMULATORARM64
+. sqlite/build.sh SIMULATORARM64
+. jpeg/build.sh SIMULATORARM64
+. tiff/build.sh SIMULATORARM64
+. proj/build.sh SIMULATORARM64
+. geos/build.sh SIMULATORARM64
 . gdal/build.sh SIMULATORARM64
 
-#. proj/pack.sh
 . gdal/pack.sh

@@ -24,7 +24,9 @@ cmake -DCMAKE_TOOLCHAIN_FILE=$CMTOOLCHAIN \
     -DBUILD_TESTING=OFF \
     -DPROJ_ROOT=$INSTALL/proj/$OS \
     -DGEOS_ROOT=$INSTALL/geos/$OS \
+    -DTIFF_ROOT=$INSTALL/tiff/$OS \
     ..
+
 cmake --build . --config Release --target install
 
 cd $SCRIPTS
