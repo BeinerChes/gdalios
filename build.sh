@@ -17,6 +17,7 @@ export PROJ_VERSION=9.1.0
 export GEOS_VERSION=3.11.0
 export GDAL_VERSION=3.5.2
 export OPENJPEG_VERSION=2.5.0
+export KML_VERSION=1.3.0
 
 
 if [ ! -d $DEV ] 
@@ -46,15 +47,18 @@ open $DEV
 . proj/download.sh &
 . geos/download.sh &
 . open_jpeg/download.sh &
+. kml/download.sh &
 . gdal/download.sh &
 wait
 export SDKPATH=$(xcrun --sdk iphoneos --show-sdk-path)
+#. curl/build.sh OS64
 #. sqlite/build.sh OS64
 #. jpeg/build.sh OS64 
 #. tiff/build.sh OS64 
 #. proj/build.sh OS64
 #. geos/build.sh OS64
 #. open_jpeg/build.sh OS64
+#. kml/build.sh OS64
 . gdal/build.sh OS64
 exit 0
 export SDKPATH=$(xcrun --sdk iphonesimulator --show-sdk-path)

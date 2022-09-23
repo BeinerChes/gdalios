@@ -1,8 +1,8 @@
 #!/bin/sh
 OS=$1
-PREFIX=$INSTALL/curl/$OS
+PREFIX=$INSTALL/kml/$OS
 
-cd $SRC/curl-$CURL_VERSION
+cd $SRC/libkml-$KML_VERSION
 
 if [ -d build_$OS ] 
 then
@@ -20,9 +20,6 @@ cmake -DCMAKE_TOOLCHAIN_FILE=$CMTOOLCHAIN \
     -DBUILD_SHARED_LIBS=OFF \
     ..
 
-ccmake ..
-
-return 0
 cmake --build . --config Release --target install
 
 cd $SCRIPTS
