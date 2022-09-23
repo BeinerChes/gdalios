@@ -27,13 +27,14 @@ cmake -DCMAKE_TOOLCHAIN_FILE=$CMTOOLCHAIN \
     -DTIFF_ROOT=$INSTALL/tiff/$OS \
     -DJPEG_ROOT=$INSTALL/jpeg/$OS \
     -DCURL_ROOT=$INSTALL/curl/$OS \
+    -DWebP_ROOT=$INSTALL/webp/$OS \
     -DOpenJPEG_ROOT=$INSTALL/open_jpeg/$OS \
     -DLIBKML_INCLUDE_DIR=$INSTALL/kml/$OS/include \
     -DLIBKML_BASE_LIBRARY=$INSTALL/kml/$OS/lib/libkmlbase.a \
     -DLIBKML_DOM_LIBRARY=$INSTALL/kml/$OS/lib/libkmldom.a \
     -DLIBKML_ENGINE_LIBRARY=$INSTALL/kml/$OS/lib/libkmlengine.a \
     ..
-
+return 0
 cmake --build . --config Release --target install
 
 cd $SCRIPTS
