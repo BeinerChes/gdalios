@@ -1,8 +1,8 @@
 #!/bin/sh
 OS=$1
-PREFIX=$INSTALL/curl/$OS
+PREFIX=$INSTALL/openssl/$OS
 
-cd $SRC/curl-$CURL_VERSION
+cd $SRC/openssl-cmake
 
 if [ -d build_$OS ] 
 then
@@ -17,12 +17,7 @@ cmake -DCMAKE_TOOLCHAIN_FILE=$CMTOOLCHAIN \
     -DENABLE_BITCODE=OFF \
     -DCMAKE_INSTALL_PREFIX=$PREFIX \
     -DCMAKE_BUILD_TYPE=Release \
-    -DBUILD_SHARED_LIBS=OFF \
-    -DOPENSSL_INCLUDE_DIR=$INSTALL/openssl/$OS/include \
-    -DOPENSSL_SSL_LIBRARY=$INSTALL/openssl/$OS/lib/libssl.a \
-    -DOPENSSL_CRYPTO_LIBRARY=$INSTALL/openssl/$OS/lib/libcrypto.a \
-    -DBUILD_CURL_EXE=OFF \
-    -DBUILD_TESTING=OFF \
+    -DWITH_APPS=OFF \
     ..
 
 cmake --build . --config Release --target install

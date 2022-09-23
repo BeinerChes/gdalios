@@ -26,6 +26,7 @@ cmake -DCMAKE_TOOLCHAIN_FILE=$CMTOOLCHAIN \
     -DGEOS_ROOT=$INSTALL/geos/$OS \
     -DTIFF_ROOT=$INSTALL/tiff/$OS \
     -DJPEG_ROOT=$INSTALL/jpeg/$OS \
+    -DCURL_ROOT=$INSTALL/curl/$OS \
     -DOpenJPEG_ROOT=$INSTALL/open_jpeg/$OS \
     -DLIBKML_INCLUDE_DIR=$INSTALL/kml/$OS/include \
     -DLIBKML_BASE_LIBRARY=$INSTALL/kml/$OS/lib/libkmlbase.a \

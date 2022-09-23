@@ -48,9 +48,11 @@ open $DEV
 . geos/download.sh &
 . open_jpeg/download.sh &
 . kml/download.sh &
+. openssl/download.sh &
 . gdal/download.sh &
 wait
 export SDKPATH=$(xcrun --sdk iphoneos --show-sdk-path)
+#. openssl/build.sh OS64
 #. curl/build.sh OS64
 #. sqlite/build.sh OS64
 #. jpeg/build.sh OS64 
