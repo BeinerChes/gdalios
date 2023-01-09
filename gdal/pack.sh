@@ -47,7 +47,6 @@ libtool -static -o \
     $INSTALL/tiff/SIMULATOR64/lib/libtiff.a \
     $INSTALL/geos/SIMULATOR64/lib/libgeos_c.a \
     $INSTALL/geos/SIMULATOR64/lib/libgeos.a \
-    $INSTALL/geos/SIMULATOR64/lib/libgeos.a \
     $INSTALL/curl/SIMULATOR64/lib/libcurl.a \
     $INSTALL/open_jpeg/SIMULATOR64/lib/libopenjp2.a \
     $INSTALL/openssl/SIMULATOR64/lib/libcrypto.a \

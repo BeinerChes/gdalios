@@ -14,7 +14,7 @@ export LIBJPEG_TURBO_VERSION=2.1.4
 export TIFF_VERSION=4.4.0
 export PROJ_VERSION=9.1.1
 export GEOS_VERSION=3.11.0
-export GDAL_VERSION=3.5.3
+export GDAL_VERSION=3.6.2
 export OPENJPEG_VERSION=2.5.0
 export KML_VERSION=1.3.0
 export WEBP_VERSION=1.2.4
@@ -62,7 +62,7 @@ export SDKPATH=$(xcrun --sdk iphoneos --show-sdk-path)
 #. geos/build.sh OS64
 #. open_jpeg/build.sh OS64
 #. webp/build.sh OS64
-. geotiff/build.sh OS64 
+#. geotiff/build.sh OS64 
 . gdal/build.sh OS64
 export SDKPATH=$(xcrun --sdk iphonesimulator --show-sdk-path)
 #. openssl/build.sh SIMULATOR64
@@ -74,8 +74,8 @@ export SDKPATH=$(xcrun --sdk iphonesimulator --show-sdk-path)
 #. geos/build.sh SIMULATOR64
 #. open_jpeg/build.sh SIMULATOR64
 #. webp/build.sh SIMULATOR64
-. geotiff/build.sh SIMULATOR64 
-. gdal/build.sh SIMULATOR64
+#. geotiff/build.sh SIMULATOR64 
+#. gdal/build.sh SIMULATOR64
 
 #. openssl/build.sh SIMULATORARM64
 #. curl/build.sh SIMULATORARM64
@@ -86,7 +86,7 @@ export SDKPATH=$(xcrun --sdk iphonesimulator --show-sdk-path)
 #. geos/build.sh SIMULATORARM64
 #. open_jpeg/build.sh SIMULATORARM64
 #. webp/build.sh SIMULATORARM64
-. geotiff/build.sh SIMULATORARM64 
-. gdal/build.sh SIMULATORARM64
+#. geotiff/build.sh SIMULATORARM64 
+#. gdal/build.sh SIMULATORARM64
 
-. gdal/pack.sh
+#. gdal/pack.sh

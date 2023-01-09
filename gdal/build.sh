@@ -36,8 +36,11 @@ cmake -DCMAKE_TOOLCHAIN_FILE=$CMTOOLCHAIN \
     -DMRSID_INCLUDE_DIR=$INSTALL/mrsid/include \
     -DMRSID_LIBRARY=$INSTALL/mrsid/lib/libltidsdk.a \
     -DGDAL_USE_MRSID=ON \
+    -DGDAL_ENABLE_DRIVER_MRSID_PLUGIN:BOOL=ON \
     ..
 
+#ccmake .
+#return 0
 cmake --build . --config Release --target install
 
 cd $SCRIPTS
