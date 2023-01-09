@@ -25,6 +25,8 @@ cmake -DCMAKE_TOOLCHAIN_FILE=$CMTOOLCHAIN \
     -DPROJ_ROOT=$INSTALL/proj/$OS \
     -DGEOS_ROOT=$INSTALL/geos/$OS \
     -DJPEG_ROOT=$INSTALL/jpeg/$OS \
+    -DGEOTIFF_INCLUDE_DIR=$INSTALL/geotiff/$OS/include \
+    -DGEOTIFF_LIBRARY_RELEASE=$INSTALL/geotiff/$OS/lib/libgeotiff.a \
     -DTIFF_INCLUDE_DIR=$INSTALL/tiff/$OS/include \
     -DTIFF_LIBRARY_RELEASE=$INSTALL/tiff/$OS/lib/libtiff.a \
     -DCURL_ROOT=$INSTALL/curl/$OS \
@@ -36,8 +38,6 @@ cmake -DCMAKE_TOOLCHAIN_FILE=$CMTOOLCHAIN \
     -DGDAL_USE_MRSID=ON \
     ..
 
-#ccmake .
-#return 0
 cmake --build . --config Release --target install
 
 cd $SCRIPTS

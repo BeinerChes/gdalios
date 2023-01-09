@@ -18,7 +18,7 @@ export GDAL_VERSION=3.5.3
 export OPENJPEG_VERSION=2.5.0
 export KML_VERSION=1.3.0
 export WEBP_VERSION=1.2.4
-
+export GEOTIFF_VERSION=1.7.1
 
 if [ ! -d $DEV ] 
 then
@@ -49,6 +49,7 @@ open $DEV
 #. open_jpeg/download.sh &
 #. webp/download.sh &
 #. mrsid/download.sh &
+#. geotiff/download.sh &
 #. gdal/download.sh &
 wait
 export SDKPATH=$(xcrun --sdk iphoneos --show-sdk-path)
@@ -61,6 +62,7 @@ export SDKPATH=$(xcrun --sdk iphoneos --show-sdk-path)
 #. geos/build.sh OS64
 #. open_jpeg/build.sh OS64
 #. webp/build.sh OS64
+. geotiff/build.sh OS64 
 . gdal/build.sh OS64
 export SDKPATH=$(xcrun --sdk iphonesimulator --show-sdk-path)
 #. openssl/build.sh SIMULATOR64
@@ -72,6 +74,7 @@ export SDKPATH=$(xcrun --sdk iphonesimulator --show-sdk-path)
 #. geos/build.sh SIMULATOR64
 #. open_jpeg/build.sh SIMULATOR64
 #. webp/build.sh SIMULATOR64
+. geotiff/build.sh SIMULATOR64 
 . gdal/build.sh SIMULATOR64
 
 #. openssl/build.sh SIMULATORARM64
@@ -83,6 +86,7 @@ export SDKPATH=$(xcrun --sdk iphonesimulator --show-sdk-path)
 #. geos/build.sh SIMULATORARM64
 #. open_jpeg/build.sh SIMULATORARM64
 #. webp/build.sh SIMULATORARM64
+. geotiff/build.sh SIMULATORARM64 
 . gdal/build.sh SIMULATORARM64
 
 . gdal/pack.sh

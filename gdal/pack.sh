@@ -25,6 +25,7 @@ libtool -static -o \
     $INSTALL/proj/OS64/lib/libproj.a \
     $INSTALL/sqlite/OS64/lib/libsqlite3.a \
     $INSTALL/jpeg/OS64/lib/libjpeg.a \
+    $INSTALL/geotiff/OS64/lib/libgeotiff.a \
     $INSTALL/tiff/OS64/lib/libtiff.a \
     $INSTALL/geos/OS64/lib/libgeos_c.a \
     $INSTALL/geos/OS64/lib/libgeos.a \
@@ -42,6 +43,7 @@ libtool -static -o \
     $INSTALL/proj/SIMULATOR64/lib/libproj.a \
     $INSTALL/sqlite/SIMULATOR64/lib/libsqlite3.a \
     $INSTALL/jpeg/SIMULATOR64/lib/libjpeg.a \
+    $INSTALL/geotiff/SIMULATOR64/lib/libgeotiff.a \
     $INSTALL/tiff/SIMULATOR64/lib/libtiff.a \
     $INSTALL/geos/SIMULATOR64/lib/libgeos_c.a \
     $INSTALL/geos/SIMULATOR64/lib/libgeos.a \
@@ -60,6 +62,7 @@ libtool -static -o \
     $INSTALL/proj/SIMULATORARM64/lib/libproj.a \
     $INSTALL/sqlite/SIMULATORARM64/lib/libsqlite3.a \
     $INSTALL/jpeg/SIMULATORARM64/lib/libjpeg.a \
+    $INSTALL/geotiff/SIMULATORARM64/lib/libgeotiff.a \
     $INSTALL/tiff/SIMULATORARM64/lib/libtiff.a \
     $INSTALL/geos/SIMULATORARM64/lib/libgeos_c.a \
     $INSTALL/geos/SIMULATORARM64/lib/libgeos.a \
