@@ -24,17 +24,20 @@ cmake -DCMAKE_TOOLCHAIN_FILE=$CMTOOLCHAIN \
     -DBUILD_TESTING=OFF \
     -DPROJ_ROOT=$INSTALL/proj/$OS \
     -DGEOS_ROOT=$INSTALL/geos/$OS \
-    -DTIFF_ROOT=$INSTALL/tiff/$OS \
     -DJPEG_ROOT=$INSTALL/jpeg/$OS \
+    -DTIFF_INCLUDE_DIR=$INSTALL/tiff/$OS/include \
+    -DTIFF_LIBRARY_RELEASE=$INSTALL/tiff/$OS/lib/libtiff.a \
     -DCURL_ROOT=$INSTALL/curl/$OS \
     -DWebP_ROOT=$INSTALL/webp/$OS \
     -DOpenJPEG_ROOT=$INSTALL/open_jpeg/$OS \
-    -DLIBKML_INCLUDE_DIR=$INSTALL/kml/$OS/include \
-    -DLIBKML_BASE_LIBRARY=$INSTALL/kml/$OS/lib/libkmlbase.a \
-    -DLIBKML_DOM_LIBRARY=$INSTALL/kml/$OS/lib/libkmldom.a \
-    -DLIBKML_ENGINE_LIBRARY=$INSTALL/kml/$OS/lib/libkmlengine.a \
+    -DMRSID_ROOT=$INSTALL/mrsid \
+    -DMRSID_INCLUDE_DIR=$INSTALL/mrsid/include \
+    -DMRSID_LIBRARY=$INSTALL/mrsid/lib/libltidsdk.a \
+    -DGDAL_USE_MRSID=ON \
     ..
-return 0
+
+#ccmake .
+#return 0
 cmake --build . --config Release --target install
 
 cd $SCRIPTS

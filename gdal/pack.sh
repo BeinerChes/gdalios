@@ -28,6 +28,13 @@ libtool -static -o \
     $INSTALL/tiff/OS64/lib/libtiff.a \
     $INSTALL/geos/OS64/lib/libgeos_c.a \
     $INSTALL/geos/OS64/lib/libgeos.a \
+    $INSTALL/curl/OS64/lib/libcurl.a \
+    $INSTALL/open_jpeg/OS64/lib/libopenjp2.a \
+    $INSTALL/openssl/OS64/lib/libcrypto.a \
+    $INSTALL/openssl/OS64/lib/libssl.a \
+    $INSTALL/webp/OS64/lib/libwebp.a \
+    $INSTALL/webp/OS64/lib/libwebpdecoder.a \
+    $INSTALL/webp/OS64/lib/libwebpdemux.a \
 
 libtool -static -o \
     $INSTALL/gdal/SIMULATOR64/lib/libgdal_linked.a \
@@ -38,6 +45,14 @@ libtool -static -o \
     $INSTALL/tiff/SIMULATOR64/lib/libtiff.a \
     $INSTALL/geos/SIMULATOR64/lib/libgeos_c.a \
     $INSTALL/geos/SIMULATOR64/lib/libgeos.a \
+    $INSTALL/geos/SIMULATOR64/lib/libgeos.a \
+    $INSTALL/curl/SIMULATOR64/lib/libcurl.a \
+    $INSTALL/open_jpeg/SIMULATOR64/lib/libopenjp2.a \
+    $INSTALL/openssl/SIMULATOR64/lib/libcrypto.a \
+    $INSTALL/openssl/SIMULATOR64/lib/libssl.a \
+    $INSTALL/webp/SIMULATOR64/lib/libwebp.a \
+    $INSTALL/webp/SIMULATOR64/lib/libwebpdecoder.a \
+    $INSTALL/webp/SIMULATOR64/lib/libwebpdemux.a \
 
 libtool -static -o \
     $INSTALL/gdal/SIMULATORARM64/lib/libgdal_linked.a \
@@ -48,6 +63,13 @@ libtool -static -o \
     $INSTALL/tiff/SIMULATORARM64/lib/libtiff.a \
     $INSTALL/geos/SIMULATORARM64/lib/libgeos_c.a \
     $INSTALL/geos/SIMULATORARM64/lib/libgeos.a \
+    $INSTALL/curl/SIMULATORARM64/lib/libcurl.a \
+    $INSTALL/open_jpeg/SIMULATORARM64/lib/libopenjp2.a \
+    $INSTALL/openssl/SIMULATORARM64/lib/libcrypto.a \
+    $INSTALL/openssl/SIMULATORARM64/lib/libssl.a \
+    $INSTALL/webp/SIMULATORARM64/lib/libwebp.a \
+    $INSTALL/webp/SIMULATORARM64/lib/libwebpdecoder.a \
+    $INSTALL/webp/SIMULATORARM64/lib/libwebpdemux.a \
 
 cp -i $INSTALL/gdal/OS64/lib/libgdal_linked.a $DEV/framework/gdal/ios-arm64/library/libgdal.a
 lipo -create -output $DEV/framework/gdal/ios-x86_64-arm64-simulator/library/libgdal.a \

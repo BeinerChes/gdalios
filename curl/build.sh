@@ -2,7 +2,7 @@
 OS=$1
 PREFIX=$INSTALL/curl/$OS
 
-cd $SRC/curl-$CURL_VERSION
+cd $SRC/curl-7.86.0
 
 if [ -d build_$OS ] 
 then

@@ -1,10 +1,12 @@
 #!/usr/bin/env bash
+#https://github.com/curl/curl/releases
+#https://github.com/curl/curl/releases/download/curl-7_86_0/curl-7.86.0.tar.gz
 set -e
 cd $SRC
-if [ ! -d curl-$CURL_VERSION ]
+if [ ! -d curl-7.86.0 ]
 then
-    curl -L -O "https://github.com/curl/curl/releases/download/curl-7_85_0/curl-$CURL_VERSION.tar.gz"
-    tar -xzf curl-$CURL_VERSION.tar.gz
+    curl -L -O "https://github.com/curl/curl/releases/download/curl-7_86_0/curl-7.86.0.tar.gz"
+    tar -xzf curl-7.86.0.tar.gz
 fi
 
 cd $SCRIPTS
