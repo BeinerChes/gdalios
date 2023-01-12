@@ -63,7 +63,7 @@ export SDKPATH=$(xcrun --sdk iphoneos --show-sdk-path)
 #. open_jpeg/build.sh OS64
 #. webp/build.sh OS64
 #. geotiff/build.sh OS64 
-. gdal/build.sh OS64
+#. gdal/build.sh OS64
 export SDKPATH=$(xcrun --sdk iphonesimulator --show-sdk-path)
 #. openssl/build.sh SIMULATOR64
 #. curl/build.sh SIMULATOR64
@@ -89,4 +89,4 @@ export SDKPATH=$(xcrun --sdk iphonesimulator --show-sdk-path)
 #. geotiff/build.sh SIMULATORARM64 
 #. gdal/build.sh SIMULATORARM64
 
-#. gdal/pack.sh
+. gdal/pack.sh

@@ -18,6 +18,23 @@ cp $SCRIPTS/gdal/module.modulemap $DEV/framework/gdal/ios-x86_64-arm64-simulator
 
 
 
+   lipo -info $INSTALL/gdal/SIMULATOR64/lib/libgdal.a 
+   lipo -info $INSTALL/proj/SIMULATOR64/lib/libproj.a 
+   lipo -info $INSTALL/sqlite/SIMULATOR64/lib/libsqlite3.a 
+   lipo -info $INSTALL/jpeg/SIMULATOR64/lib/libjpeg.a 
+   lipo -info $INSTALL/geotiff/SIMULATOR64/lib/libgeotiff.a 
+   lipo -info $INSTALL/tiff/SIMULATOR64/lib/libtiff.a 
+   lipo -info $INSTALL/geos/SIMULATOR64/lib/libgeos_c.a 
+   lipo -info $INSTALL/geos/SIMULATOR64/lib/libgeos.a 
+   lipo -info $INSTALL/curl/SIMULATOR64/lib/libcurl.a 
+   lipo -info $INSTALL/open_jpeg/SIMULATOR64/lib/libopenjp2.a 
+   lipo -info $INSTALL/openssl/SIMULATOR64/lib/libcrypto.a 
+   lipo -info $INSTALL/openssl/SIMULATOR64/lib/libssl.a 
+   lipo -info $INSTALL/webp/SIMULATOR64/lib/libwebp.a 
+   lipo -info $INSTALL/webp/SIMULATOR64/lib/libwebpdecoder.a 
+   lipo -info $INSTALL/webp/SIMULATOR64/lib/libwebpdemux.a 
+
+
 
 libtool -static -o \
     $INSTALL/gdal/OS64/lib/libgdal_linked.a \
@@ -54,6 +71,8 @@ libtool -static -o \
     $INSTALL/webp/SIMULATOR64/lib/libwebp.a \
     $INSTALL/webp/SIMULATOR64/lib/libwebpdecoder.a \
     $INSTALL/webp/SIMULATOR64/lib/libwebpdemux.a \
+
+#return 0
 
 libtool -static -o \
     $INSTALL/gdal/SIMULATORARM64/lib/libgdal_linked.a \

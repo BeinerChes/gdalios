@@ -29,14 +29,8 @@ cmake -DCMAKE_TOOLCHAIN_FILE=$CMTOOLCHAIN \
     -DGEOTIFF_LIBRARY_RELEASE=$INSTALL/geotiff/$OS/lib/libgeotiff.a \
     -DTIFF_INCLUDE_DIR=$INSTALL/tiff/$OS/include \
     -DTIFF_LIBRARY_RELEASE=$INSTALL/tiff/$OS/lib/libtiff.a \
-    -DCURL_ROOT=$INSTALL/curl/$OS \
     -DWebP_ROOT=$INSTALL/webp/$OS \
     -DOpenJPEG_ROOT=$INSTALL/open_jpeg/$OS \
-    -DMRSID_ROOT=$INSTALL/mrsid \
-    -DMRSID_INCLUDE_DIR=$INSTALL/mrsid/include \
-    -DMRSID_LIBRARY=$INSTALL/mrsid/lib/libltidsdk.a \
-    -DGDAL_USE_MRSID=ON \
-    -DGDAL_ENABLE_DRIVER_MRSID_PLUGIN:BOOL=ON \
     ..
 
 #ccmake .

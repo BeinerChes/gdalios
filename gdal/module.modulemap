@@ -2,6 +2,7 @@ module gdal {
     header "gdal.h"
     header "ogr_api.h"
     header "ogr_srs_api.h"
+    header "proj.h"
     link "gdal"
     export *
 }
