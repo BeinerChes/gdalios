@@ -19,6 +19,7 @@ export OPENJPEG_VERSION=2.5.0
 export KML_VERSION=1.3.0
 export WEBP_VERSION=1.2.4
 export GEOTIFF_VERSION=1.7.1
+export LIBPQ_VERSION=13.1
 
 if [ ! -d $DEV ] 
 then
@@ -39,7 +40,10 @@ if [ ! -f "$CMTOOLCHAIN" ]; then
     curl -L -o $CMTOOLCHAIN https://raw.githubusercontent.com/BeinerChes/ios-cmake/master/ios.toolchain.cmake    
 fi
 open $DEV
+
+
 #. openssl/download.sh &
+. postgis/download.sh &
 #. curl/download.sh &
 #. sqlite/download.sh &
 #. jpeg/download.sh &
@@ -48,12 +52,13 @@ open $DEV
 #. geos/download.sh &
 #. open_jpeg/download.sh &
 #. webp/download.sh &
-#. mrsid/download.sh &
 #. geotiff/download.sh &
 #. gdal/download.sh &
 wait
 export SDKPATH=$(xcrun --sdk iphoneos --show-sdk-path)
 #. openssl/build.sh OS64
+. postgis/build.sh OS64
+exit
 #. curl/build.sh OS64
 #. sqlite/build.sh OS64
 #. jpeg/build.sh OS64 
@@ -65,28 +70,28 @@ export SDKPATH=$(xcrun --sdk iphoneos --show-sdk-path)
 #. geotiff/build.sh OS64 
 #. gdal/build.sh OS64
 export SDKPATH=$(xcrun --sdk iphonesimulator --show-sdk-path)
-#. openssl/build.sh SIMULATOR64
-#. curl/build.sh SIMULATOR64
-#. sqlite/build.sh SIMULATOR64
-#. jpeg/build.sh SIMULATOR64 
-#. tiff/build.sh SIMULATOR64 
-#. proj/build.sh SIMULATOR64
-#. geos/build.sh SIMULATOR64
-#. open_jpeg/build.sh SIMULATOR64
-#. webp/build.sh SIMULATOR64
-#. geotiff/build.sh SIMULATOR64 
-#. gdal/build.sh SIMULATOR64
+. openssl/build.sh SIMULATOR64
+. curl/build.sh SIMULATOR64
+. sqlite/build.sh SIMULATOR64
+. jpeg/build.sh SIMULATOR64 
+. tiff/build.sh SIMULATOR64 
+. proj/build.sh SIMULATOR64
+. geos/build.sh SIMULATOR64
+. open_jpeg/build.sh SIMULATOR64
+. webp/build.sh SIMULATOR64
+. geotiff/build.sh SIMULATOR64 
+. gdal/build.sh SIMULATOR64
 
-#. openssl/build.sh SIMULATORARM64
-#. curl/build.sh SIMULATORARM64
-#. sqlite/build.sh SIMULATORARM64
-#. jpeg/build.sh SIMULATORARM64 
-#. tiff/build.sh SIMULATORARM64 
-#. proj/build.sh SIMULATORARM64
-#. geos/build.sh SIMULATORARM64
-#. open_jpeg/build.sh SIMULATORARM64
-#. webp/build.sh SIMULATORARM64
-#. geotiff/build.sh SIMULATORARM64 
-#. gdal/build.sh SIMULATORARM64
+. openssl/build.sh SIMULATORARM64
+. curl/build.sh SIMULATORARM64
+. sqlite/build.sh SIMULATORARM64
+. jpeg/build.sh SIMULATORARM64 
+. tiff/build.sh SIMULATORARM64 
+. proj/build.sh SIMULATORARM64
+. geos/build.sh SIMULATORARM64
+. open_jpeg/build.sh SIMULATORARM64
+. webp/build.sh SIMULATORARM64
+. geotiff/build.sh SIMULATORARM64 
+. gdal/build.sh SIMULATORARM64
 
 . gdal/pack.sh
