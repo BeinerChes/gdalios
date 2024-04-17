@@ -30,6 +30,7 @@ cmake -DCMAKE_TOOLCHAIN_FILE=$CMTOOLCHAIN \
     -DTIFF_INCLUDE_DIR=$INSTALL/tiff/$OS/include \
     -DTIFF_LIBRARY_RELEASE=$INSTALL/tiff/$OS/lib/libtiff.a \
     -DWebP_ROOT=$INSTALL/webp/$OS \
+    -DGDAL_USE_ZSTD=OFF \
     -DOpenJPEG_ROOT=$INSTALL/open_jpeg/$OS \
     ..
 
